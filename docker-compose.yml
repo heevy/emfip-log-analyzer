@@ -20,5 +20,8 @@ emfiplogprocessor:
 
 kibana:
  build: kibana
+ links:
+  - elastic:elasticsearch
  ports:
-  - 80:80
+  - 5601:5601
+
