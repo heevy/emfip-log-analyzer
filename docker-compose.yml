@@ -1,0 +1,24 @@
+elastic:
+ build: elastic
+ ports:
+  - 9200
+
+logstash:
+ build: logstash
+ ports:
+  - 3333
+ links:
+  - elastic
+ command: logstash -f /config-dir/logstash.conf
+
+emfiplogprocessor:
+ build: emfip_log_processor
+ links:
+  - logstash
+ volumes:
+  - input-dir:/input-dir
+
+kibana:
+ build: kibana
+ ports:
+  - 80:80
