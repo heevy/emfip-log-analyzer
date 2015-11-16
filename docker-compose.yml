@@ -16,9 +16,19 @@ emfiplogprocessor:
  links:
   - logstash
  volumes:
-  - input-dir:/input-dir
+  - "./input-dir:/input-dir"
 
 kibana:
  build: kibana
+ links:
+  - elastic:elasticsearch
  ports:
   - 80:80
+
+dashboards:
+ build: dashboards-loader
+ links:
+  - elastic:elasticsearch
+ volumes:
+  - ./dashboards:/dashboards
+
