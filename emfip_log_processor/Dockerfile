@@ -1,4 +1,4 @@
-FROM ubuntu
-RUN apt-get update && apt-get install -yqq unzip
+FROM ubuntu:14.04
+RUN apt-get update && apt-get install -yqq unzip netcat
 COPY discoverAndIndex.sh /bin/
 CMD /bin/discoverAndIndex.sh
